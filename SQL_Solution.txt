@@ -1,0 +1,63 @@
+1. CREATE TABLE T_PERSON (
+id INT AUTO-INCREMENT PRIMARY KEY,
+last_name VARCHAR(255) NOT NULL,
+first_name VARCHAR(255) NOT NULL,
+address VARCHAR(255) NOT NULL,
+city VARCHAR(255) NOT NULL
+);
+
+2. CREATE TABLE T_CAR (
+id INT NOT NULL AUTO-INCREMENT PRIMARY KEY,
+brand VARCHAR(255) NOT NULL,
+model VARCHAR(255) NOT NULL,
+reg_number VARCHAR(8) NOT NULL,
+person_id INT,
+CONSTRAINT FOREIGN KEY (person_id) REFERENCES T_PERSON(id)
+);
+
+
+3. INSERT INTO T_PERSON (last_name, first_name, address, city)
+VALUES ('Господинов', 'Иван', 'жк. Изток', 'София'),
+('Георгиева', 'Жанета', 'жк. Слатина', 'София'),
+('Петров', 'Антоан', 'жк. Гео Милев', 'София'),
+('Стефанов', 'Иван', 'жк. Яворов', 'София'),
+('Миленова', 'Мая', 'жк. Студентски', 'София');
+
+4. INSERT INTO T_CAR (brand, model, reg_number, person_id)
+VALUES ('Toyota', 'Rav4', 'CA1020PM', '1'),
+('Porsche', 'Panamera', 'CA6666PK', '3'),
+('Audi', 'A8', 'PB5567PO', '4'),
+('Nissan', 'Juke', 'B7530TM', '5'),
+('Opel', 'Corsa', 'A8534OM', '2'),
+('Renault', 'Clio', 'C8093YM', '2'),
+('BMW', 'X6', 'CA6060PM', '3'),
+('Porsche', '911', 'KH1111PK', '3'),
+('Fiat', 'Punto', 'PB8421EM', '5'),
+('Ford', 'Focus', 'A1246HM', '1');
+
+5. SELECT * FROM T_PERSON
+
+6. SELECT * FROM T_CAR
+
+7. SELECT brand, model, reg_number
+FROM T_CAR
+WHERE id=3;
+
+8. SELECT * FROM T_PERSON
+WHERE first_name='Иван';
+
+9. SELECT * FROM `T_CAR` 
+WHERE reg_number LIKE 'C%';
+
+10. SELECT T_PERSON.first_name, T_PERSON.last_name, T_CAR.brand, T_CAR.model
+FROM T_PERSON JOIN T_CAR
+ON T_PERSON.id = T_CAR.person_id
+
+11. SELECT DISTINCT T_PERSON.first_name, T_PERSON.last_name
+FROM T_PERSON JOIN T_CAR
+ON T_PERSON.id=T_CAR.person_id
+WHERE T_CAR.reg_number LIKE 'C%';
+
+12. SELECT * FROM `T_CAR` WHERE reg_number LIKE '%5%'
+
+
